@@ -1,6 +1,5 @@
 <?php
-//front end here
-
+//front end here...
 ?>
 
 <!DOCTYPE html>
@@ -10,12 +9,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
 </head>
 <body>
-    <h1>My first PHP website</h1>
-    <p>My first paragraph.</p>
-    <?php
-    echo "My first PHP script.";
-    ?>
+    <nav>
+        <ul>
+            <li><a>search input and button should be here</a></li>
+        </ul>
+    </nav>
+
+    <p>add button here</p>
+
+
+
 </body>
 </html>
