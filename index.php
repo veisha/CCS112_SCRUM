@@ -12,19 +12,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    
+    <title>Task Management System</title>
 </head>
+
 <body>
-    <nav>
-        <ul>
-            <li><a>search input and button should be here</a></li>
-        </ul>
-    </nav>
+  <h1>TMS (Task Management System)</h1>
 
-    <p>add button here</p>
+  <nav>
+  <input type="search" id="search-input" placeholder="Search tasks">
+  <button id="search-button">Search</button> 
+  </nav>
 
 
+  <p><button id="add-task-button">Add Task</button></p>
+
+
+<table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Due Date</th>
+        <th>Description</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+</table>
 
 </body>
 </html>
