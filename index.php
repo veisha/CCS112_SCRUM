@@ -30,10 +30,7 @@
 <table>
     <thead>
       <tr>
-        <th>Title</th>
-        <th>Due Date</th>
-        <th>Description</th>
-        <th>Status</th>
+        <th>Tasks</th>
       </tr>
     </thead>
 </table>
