@@ -19,7 +19,7 @@
   <h1>TMS (Task Management System)</h1>
 
   <nav>
-  <input type="search" id="search-input" placeholder="Search tasks">
+  <input type="date" id="search-input" placeholder="Search tasks">
   <button id="search-button">Search</button> 
   </nav>
 
