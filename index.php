@@ -48,7 +48,10 @@
 <table>
     <thead>
       <tr>
-        <th>Tasks</th>
+        <th>Title</th>
+        <th>Due Date</th>
+        <th>Description</th>
+        <th>Status</th>
       </tr>
     </thead>
 </table>
