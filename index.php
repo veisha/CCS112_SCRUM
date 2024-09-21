@@ -54,6 +54,16 @@ $result = $conn->query($sql);
           <button type="button" id="closeTaskForm">Close</button>
       </form>
   </div>
+        <!-- Popup for Add Task -->
+        <div class="popup" style="display:none;" id="add">
+            <p>Task Added Successfully!</p>
+            <button type="button" onclick="closeAddPopup()">Close</button>
+        </div>
+        <!-- Popup for Edit Task -->
+        <div class="popup" id="edit">
+            <p>Task Edited Successfully!</p>
+            <button type="button" onclick="closeEditPopup()">Close</button>
+        </div>
 
   <!-- Task Table -->
   <table border="1">
@@ -101,6 +111,21 @@ $result = $conn->query($sql);
   document.getElementById("closeTaskForm").addEventListener("click", () => {
       document.getElementById("taskForm").style.display = "none";
   });
+        // 
+        let popup = document.getElementById("add");
+        function openpopup() {
+            popup.classList.add("open-popup").style.display = "none";
+        }
+        function closepopup() {
+            popup.classList.remove("open-popup").style.display = "none";
+        }
+        let popup = document.getElementById("edit");
+        function popup() {
+            popup.classList.add("open-popup").style.display = "none";
+        }
+        function closePopup() {
+            popup.classList.remove("open-popup").style.display = "none";
+        }
   </script>
 
 </body>
