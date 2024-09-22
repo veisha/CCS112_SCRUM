@@ -54,16 +54,24 @@ $result = $conn->query($sql);
           <button type="button" id="closeTaskForm">Close</button>
       </form>
   </div>
-        <!-- Popup for Add Task -->
-        <div class="popup" style="display:none;" id="add">
-            <p>Task Added Successfully!</p>
-            <button type="button" onclick="closeAddPopup()">Close</button>
-        </div>
-        <!-- Popup for Edit Task -->
-        <div class="popup" id="edit">
-            <p>Task Edited Successfully!</p>
-            <button type="button" onclick="closeEditPopup()">Close</button>
-        </div>
+
+  <!-- Edit Task Popup -->
+  <div id="editTaskForm" style="display:none;" class="popup">
+      <form action="updateTask.php" method="post">
+          <input type="hidden" id="editTaskId" name="taskId">
+          <label for="editTaskTitle">Task Title:</label>
+          <input type="text" id="editTaskTitle" name="taskTitle" required><br>
+
+          <label for="editTaskDescription">Task Description:</label>
+          <textarea id="editTaskDescription" name="taskDescription" required></textarea><br>
+
+          <label for="editDueDate">Due Date:</label>
+          <input type="date" id="editDueDate" name="dueDate" required><br>
+
+          <button type="submit">Update Task</button>
+          <button type="button" id="closeEditTaskForm">Back</button>
+      </form>
+  </div>
 
   <!-- Task Table -->
   <table border="1">
@@ -90,8 +98,8 @@ $result = $conn->query($sql);
                   echo "<td>" . $row["Task_DueDate"] . "</td>";
                   echo "<td>" . $row["Task_Status"] . "</td>";
                   echo "<td>";
-                  echo "<button class='editBtn'>Edit</button>";
-                  echo "<button class='deleteBtn'>Delete</button>";
+                  echo "<button onclick='openEditPopup(" . $row["Task_ID"] . ", `" . $row["Task_Title"] . "`, `" . $row["Task_Description"] . "`, `" . $row["Task_DueDate"] . "`)'>Edit</button> ";
+                  echo "<button onclick='deleteTask(" . $row["Task_ID"] . ")'>Delete</button>";
                   echo "</td>";
                   echo "</tr>";
               }
@@ -111,21 +119,28 @@ $result = $conn->query($sql);
   document.getElementById("closeTaskForm").addEventListener("click", () => {
       document.getElementById("taskForm").style.display = "none";
   });
-        // 
-        let popup = document.getElementById("add");
-        function openpopup() {
-            popup.classList.add("open-popup").style.display = "none";
-        }
-        function closepopup() {
-            popup.classList.remove("open-popup").style.display = "none";
-        }
-        let popup = document.getElementById("edit");
-        function popup() {
-            popup.classList.add("open-popup").style.display = "none";
-        }
-        function closePopup() {
-            popup.classList.remove("open-popup").style.display = "none";
-        }
+
+  // Open Edit Task Popup and populate with data
+  function openEditPopup(taskId, taskTitle, taskDescription, dueDate) {
+      document.getElementById("editTaskId").value = taskId;
+      document.getElementById("editTaskTitle").value = taskTitle;
+      document.getElementById("editTaskDescription").value = taskDescription;
+      document.getElementById("editDueDate").value = dueDate;
+
+      document.getElementById("editTaskForm").style.display = "block";
+  }
+
+  // Close Edit Task Popup
+  document.getElementById("closeEditTaskForm").addEventListener("click", () => {
+      document.getElementById("editTaskForm").style.display = "none";
+  });
+
+  // Delete Task function
+  function deleteTask(taskId) {
+      if (confirm("Are you sure you want to delete this task?")) {
+          window.location.href = 'deleteTask.php?id=' + taskId;
+      }
+  }
   </script>
 
 </body>
