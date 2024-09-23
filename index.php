@@ -26,16 +26,20 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Management System</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <h1 align="middle">TMS (Task Management System)</h1> 
+  <h1 align="middle">TMS (Task Management System)</h1>
   <button id="toggleNav">=</button> <br>
+  <button id="addTaskButton" class="add_button">Add Task</button>
     <div id="navDashboard" class="navSidebar">
         <nav>
         <input type="search" id="search-input" placeholder="Search tasks">
         <button id="search-button">Search</button> <br>
-        <button id="addTaskButton">Add Task</button>
+        
         </nav>
     </div>
 
@@ -73,6 +77,7 @@ $result = $conn->query($sql);
           <button type="button" id="closeEditTaskForm">Back</button>
       </form>
   </div>
+  
 
   <!-- Task Table -->
   <table border="1">
