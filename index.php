@@ -29,14 +29,15 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-  <h1>TMS (Task Management System)</h1>
-
-  <nav>
-      <input type="search" id="search-input" placeholder="Search tasks">
-      <button id="search-button">Search</button> 
-  </nav>
-
-  <button id="addTaskButton">Add Task</button>
+  <h1 align="middle">TMS (Task Management System)</h1> 
+  <button id="toggleNav">=</button> <br>
+    <div id="navDashboard" class="navSidebar">
+        <nav>
+        <input type="search" id="search-input" placeholder="Search tasks">
+        <button id="search-button">Search</button> <br>
+        <button id="addTaskButton">Add Task</button>
+        </nav>
+    </div>
 
   <!-- Task form -->
   <div id="taskForm" style="display:none;" class="popup">
@@ -58,7 +59,7 @@ $result = $conn->query($sql);
   <!-- Edit Task Popup -->
   <div id="editTaskForm" style="display:none;" class="popup">
       <form action="updateTask.php" method="post">
-          <input type="hidden" id="editTaskId" name="taskId">
+          <input type="hidden" id="editTaskId" name="taskId" required maxlength="10">
           <label for="editTaskTitle">Task Title:</label>
           <input type="text" id="editTaskTitle" name="taskTitle" required><br>
 
@@ -77,12 +78,12 @@ $result = $conn->query($sql);
   <table border="1">
       <thead>
           <tr>
-              <th>Task ID</th>
-              <th>Task Name</th>
-              <th>Task Description</th>
-              <th>Due Date</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th class="idT">Task ID</th>
+              <th class="TaskN">Task Name</th>
+              <th class="TaskD">Task Description</th>
+              <th class="TaskDt">Due Date</th>
+              <th class="TaskS">Status</th>
+              <th class="TaskA">Actions</th>
           </tr>
       </thead>
       <tbody>
@@ -91,10 +92,14 @@ $result = $conn->query($sql);
           if ($result->num_rows > 0) {
               // Output data of each row
               while ($row = $result->fetch_assoc()) {
-                  echo "<tr>";
+                  //Limiting the string length for tasktTitle to 15, and taskDescription to 45
+                $taskTitle = (strlen($row["Task_Title"]) > 15) ? substr($row["Task_Title"], 0, 15) . '...' : $row["Task_Title"];
+                $taskDescription = (strlen($row["Task_Description"]) > 45) ? substr($row["Task_Description"], 0, 45) . '...' : $row["Task_Description"];
+
+                echo "<tr>";
                   echo "<td>" . $row["Task_ID"] . "</td>";
-                  echo "<td>" . $row["Task_Title"] . "</td>";
-                  echo "<td>" . $row["Task_Description"] . "</td>";
+                  echo "<td>" . $taskTitle . "</td>";
+                  echo "<td>" . $taskDescription . "</td>";
                   echo "<td>" . $row["Task_DueDate"] . "</td>";
                   echo "<td>" . $row["Task_Status"] . "</td>";
                   echo "<td>";
@@ -126,7 +131,6 @@ $result = $conn->query($sql);
       document.getElementById("editTaskTitle").value = taskTitle;
       document.getElementById("editTaskDescription").value = taskDescription;
       document.getElementById("editDueDate").value = dueDate;
-
       document.getElementById("editTaskForm").style.display = "block";
   }
 
@@ -144,7 +148,18 @@ $result = $conn->query($sql);
   </script>
 
 </body>
+
 </html>
+
+<!--JQuery Part Here-->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script></script>
+<script> <!--Nav
+$(document).ready(function(){
+  $("#toggleNav").click(function(){
+    $(".navSidebar").toggle();
+  });
+});
+</script>
 
 <?php
 // Close the database connection

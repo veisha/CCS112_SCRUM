@@ -8,3 +8,25 @@
     padding: 20px;
     background-color: #fff;
 }
+table{
+    margin-left: auto;
+    margin-right: auto;
+}
+.idT{
+    width: 150px;
+}
+.TaskN{
+    width: 210px;
+}
+.TaskD{
+    width:600px
+}
+.TaskDt{
+    width: 100px;
+}
+.TaskS{
+    width: 100px;
+}
+.TaskA{
+    width: 100px
+}
