@@ -37,8 +37,11 @@ $result = $conn->query($sql);
   <button id="addTaskButton" class="add_button">Add Task</button>
     <div id="navDashboard" class="navSidebar">
         <nav>
-        <input type="search" id="search-input" placeholder="Search tasks">
-        <button id="search-button">Search</button> <br>
+        <form action="search.php" method="post">
+            <input type="search" id="search-input" name="searchTerm" placeholder="Search tasks" required>
+            <button type="submit" id="search-button">Search</button>
+        </form>
+
         
         </nav>
     </div>
