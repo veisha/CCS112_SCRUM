@@ -33,17 +33,15 @@ $result = $conn->query($sql);
 
 <body>
   <h1 align="middle">TMS (Task Management System)</h1>
-  <button id="toggleNav">=</button> <br>
+  <button id="toggleNav" >=</button> <br> 
   <button id="addTaskButton" class="add_button">Add Task</button>
     <div id="navDashboard" class="navSidebar">
         <nav>
         <form action="search.php" method="post">
-            <input type="search" id="search-input" name="searchTerm" placeholder="Search tasks" required>
-            <button type="submit" id="search-button">Search</button>
+        <input type="search" id="search-input" name="searchTerm" placeholder="Search tasks" required>
+        <button type="submit" id="search-button" style="background: #b6ff00; border-radius: 1px;  border: 2px solid #2C2C2C">Search</button>
         </form>
-
-        
-        </nav>
+    </nav>
     </div>
 
   <!-- Task form -->
@@ -58,13 +56,13 @@ $result = $conn->query($sql);
           <label for="dueDate">Due Date:</label>
           <input type="date" id="dueDate" name="dueDate" required><br>
 
-          <button type="submit" id="saveTaskButton">Save Task</button>
-          <button type="button" id="closeTaskForm">Close</button>
+          <button type="submit" id="saveTaskButton" style="background: #b6ff00; border-radius: 5px;  border: 2px solid #2C2C2C">Save Task</button>
+          <button type="button" id="closeTaskForm"style="background: #b6ff00; border-radius: 5px;  border: 2px solid #2C2C2C">Close</button>
       </form>
   </div>
 
   <!-- Edit Task Popup -->
-  <div id="editTaskForm" style="display:none;" class="popup">
+  <div id="editTaskForm" style="display:none; " class="popup">
       <form action="updateTask.php" method="post">
           <input type="hidden" id="editTaskId" name="taskId" required maxlength="10">
           <label for="editTaskTitle">Task Title:</label>
@@ -76,8 +74,8 @@ $result = $conn->query($sql);
           <label for="editDueDate">Due Date:</label>
           <input type="date" id="editDueDate" name="dueDate" required><br>
 
-          <button type="submit">Update Task</button>
-          <button type="button" id="closeEditTaskForm">Back</button>
+          <button type="submit" style="background: #b6ff00; border-radius: 5px;  border: 2px solid #2C2C2C">Update Task</button>
+          <button type="button" id="closeEditTaskForm" style="background: #b6ff00; border-radius: 5px;  border: 2px solid #2C2C2C">Back</button>
       </form>
   </div>
   
@@ -105,16 +103,17 @@ $result = $conn->query($sql);
                 $taskDescription = (strlen($row["Task_Description"]) > 45) ? substr($row["Task_Description"], 0, 45) . '...' : $row["Task_Description"];
 
                 echo "<tr>";
-                  echo "<td>" . $row["Task_ID"] . "</td>";
-                  echo "<td>" . $taskTitle . "</td>";
-                  echo "<td>" . $taskDescription . "</td>";
-                  echo "<td>" . $row["Task_DueDate"] . "</td>";
-                  echo "<td>" . $row["Task_Status"] . "</td>";
-                  echo "<td>";
-                  echo "<button onclick='openEditPopup(" . $row["Task_ID"] . ", `" . $row["Task_Title"] . "`, `" . $row["Task_Description"] . "`, `" . $row["Task_DueDate"] . "`)'>Edit</button> ";
-                  echo "<button onclick='deleteTask(" . $row["Task_ID"] . ")'>Delete</button>";
-                  echo "</td>";
-                  echo "</tr>";
+                echo "<td>" . $row["Task_ID"] . "</td>";
+                echo "<td>" . $taskTitle . "</td>";
+                echo "<td>" . $taskDescription . "</td>";
+                echo "<td>" . $row["Task_DueDate"] . "</td>";
+                echo "<td>" . $row["Task_Status"] . "</td>";
+                echo "<td>";
+                echo "<button onclick='openEditPopup(" . $row["Task_ID"] . ", `" . $row["Task_Title"] . "`, `" . $row["Task_Description"] . "`, `" . $row["Task_DueDate"] . "`) 'style='element.style { background: #b6ff00; border: 3px solid #2C2C2C; }; background: #b6ff00; border: 2px solid #2C2C2C;'> Edit</button>";
+                echo "<button onclick='deleteTask(" . $row["Task_ID"] . ")'style='element.style { background: #b6ff00; border: 3px solid #2C2C2C; }; background: #b6ff00; border: 2px solid #2C2C2C;'
+>Delete</button>";
+                echo "</td>";
+                echo "</tr>";
               }
           } else {
               echo "<tr><td colspan='6'>No tasks found</td></tr>";

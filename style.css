@@ -1,77 +1,76 @@
 body {
-    font-family: "Open Sans", sans-serif;
-  }
+  font-family: "Open Sans", sans-serif;
+}
+
+.add_button {
+  box-sizing: border-box;
   
-  .add_button {
-    box-sizing: border-box;
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-    gap: 8px;
-    
-    position: absolute;
-    width: 149px;
-    height: 41px;
-    left: 1058px;
-    top: 102px;
-    
-    background: #b6ff00;
-    border: 3px solid #2C2C2C;
-    }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  gap: 8px;
   
-  table {
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    border-radius: 8px;
-  }
+  position: absolute;
+  width: 149px;
+  height: 41px;
+  left: 1058px;
+  top: 102px;
   
-  th, td {
-    border: 3px solid black;
-    padding: 8px;
-    text-align: left;
+  background: #b6ff00;
+  border: 3px solid #2C2C2C;
   }
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+th, td {
+  border: 3px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #b6ff00;
   
-  th {
-    background-color: #b6ff00;
-    
-  }
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   
-  .popup {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    
-    border: 3px solid black;
-    padding: 20px;
-    background-color: #b6ff00;
-    border-radius: 10px;
-  }
-  
-  .idT{
-    width: 150px;
-  }
-  .TaskN{
-    width: 210px;
-  }
-  .TaskD{
-    width:600px
-  }
-  .TaskDt{
-    width: 100px;
-  }
-  .TaskS{
-    width: 100px;
-  }
-  .TaskA{
-    width: 100px
-  }
-  
-  
+  border: 3px solid black;
+  padding: 20px;
+  background-color: #b6ff00;
+  border-radius: 10px;
+}
+
+.idT{
+  width: 150px;
+}
+.TaskN{
+  width: 210px;
+}
+.TaskD{
+  width:600px
+}
+.TaskDt{
+  width: 100px;
+}
+.TaskS{
+  width: 100px;
+}
+.TaskA{
+  width: 100px
+}
+
