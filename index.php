@@ -32,17 +32,18 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-  <h1 align="middle">TMS (Task Management System)</h1>
-  <button id="toggleNav" >=</button> <br> 
-  <button id="addTaskButton" class="add_button">Add Task</button>
-    <div id="navDashboard" class="navSidebar">
+    <div class="navSidebar">
         <nav>
+        <button id="closeNav" >&#8801</button>
         <form action="search.php" method="post">
         <input type="search" id="search-input" name="searchTerm" placeholder="Search tasks" required>
-        <button type="submit" id="search-button" style="background: #b6ff00; border-radius: 1px;  border: 2px solid #2C2C2C">Search</button>
+        <button type="submit" id="search-button" style="background: #b6ff00; border-radius: 1px;  border: 2px solid #2C2C2C;">Search</button>
         </form>
     </nav>
     </div>
+    <button id="openNav" >&#8801</button> 
+    <h1 align="center">TMS (Task Management System)</h1>
+  <button id="addTaskButton" class="add_button">Add Task</button>
 
   <!-- Task form -->
   <div id="taskForm" style="display:none;" class="popup">
@@ -160,10 +161,15 @@ $result = $conn->query($sql);
 
 <!--JQuery Part Here-->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script></script>
-<script> <!--Nav
+<script>
 $(document).ready(function(){
-  $("#toggleNav").click(function(){
-    $(".navSidebar").toggle();
+  $("#openNav").click(function(){
+    $(".navSidebar").show();
+  });
+});
+$(document).ready(function(){
+  $("#closeNav").click(function(){
+    $(".navSidebar").hide();
   });
 });
 </script>
