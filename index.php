@@ -82,20 +82,22 @@ $result = $conn->query($sql);
   
 
   <!-- Task Table -->
-  <table border="1">
-      <thead>
-          <tr>
+  
+<div id="tableDIV">
+        <table border="1">
+              <thead>
+              <tr>
               <th class="idT">Task ID</th>
               <th class="TaskN">Task Name</th>
               <th class="TaskD">Task Description</th>
               <th class="TaskDt">Due Date</th>
               <th class="TaskS">Status</th>
               <th class="TaskA">Actions</th>
-          </tr>
-      </thead>
-      <tbody>
+             </tr>
+        </thead>
+         <tbody>
           <?php
-          // Check if there are any tasks in the database
+            // Check if there are any tasks in the database
           if ($result->num_rows > 0) {
               // Output data of each row
               while ($row = $result->fetch_assoc()) {
@@ -119,9 +121,10 @@ $result = $conn->query($sql);
           } else {
               echo "<tr><td colspan='6'>No tasks found</td></tr>";
           }
-          ?>
+           ?>
       </tbody>
-  </table>
+    </table>
+</div>
 
   <script>
   // Handle form visibility using JavaScript
@@ -165,11 +168,13 @@ $result = $conn->query($sql);
 $(document).ready(function(){
   $("#openNav").click(function(){
     $(".navSidebar").show();
+    document.getElementById("tableDIV").style.marginLeft = "8%";
   });
 });
 $(document).ready(function(){
   $("#closeNav").click(function(){
     $(".navSidebar").hide();
+    document.getElementById("tableDIV").style.marginLeft = "0";
   });
 });
 </script>

@@ -63,6 +63,12 @@ th {
   height: 100%;
   overflow: auto;
 }
+#tableDIV{
+  margin-left: 0;
+  transition: margin-left 0.3s;
+  padding: 20px;
+  box-sizing: border-box;
+}
 #closeNav, #openNav {
   width: 80px;
   height: 40px;
