@@ -34,6 +34,25 @@ $result = $conn->query($sql);
     <h1>Search Results</h1>
     <button onclick="window.location.href='index.php'">Back</button>
     
+    
+  <!-- Edit Task Popup -->
+  <div id="editTaskForm" style="display:none; " class="popup">
+      <form action="updateTask.php" method="post">
+          <input type="hidden" id="editTaskId" name="taskId" required maxlength="10">
+          <label for="editTaskTitle">Task Title:</label>
+          <input type="text" id="editTaskTitle" name="taskTitle" required><br>
+
+          <label for="editTaskDescription">Task Description:</label>
+          <textarea id="editTaskDescription" name="taskDescription" required></textarea><br>
+
+          <label for="editDueDate">Due Date:</label>
+          <input type="date" id="editDueDate" name="dueDate" required><br>
+
+          <button type="submit" style="background: #b6ff00; border-radius: 5px;  border: 1px solid #2C2C2C">Update Task</button>
+          <button type="button" id="closeEditTaskForm" style="background: #b6ff00; border-radius: 5px;  border: 1px solid #2C2C2C">Back</button>
+      </form>
+  </div>
+
     <!-- Task Table -->
     <table border="1">
         <thead>
@@ -61,9 +80,9 @@ $result = $conn->query($sql);
                     echo "<td>" . $row["Task_DueDate"] . "</td>";
                     echo "<td>" . $row["Task_Status"] . "</td>";
                     echo "<td>";
-                    echo "<button onclick='openEditPopup(" . $row["Task_ID"] . ", `" . $row["Task_Title"] . "`, `" . $row["Task_Description"] . "`, `" . $row["Task_DueDate"] . "`)'>Edit</button> ";
-                    echo "<button onclick='deleteTask(" . $row["Task_ID"] . ")'>Delete</button>";
-                    echo "</td>";
+                    echo "<button onclick='openEditPopup(" . $row["Task_ID"] . ", `" . $row["Task_Title"] . "`, `" . $row["Task_Description"] . "`, `" . $row["Task_DueDate"] . "`) 'style='background: #b6ff00; border: 1px solid #2C2C2C;'> Edit</button>";
+                    echo "<button onclick='deleteTask(" . $row["Task_ID"] . ")'style='background: #b6ff00; border: 1px solid #2C2C2C;'>Delete</button>";
+                    echo "</td>"; 
                     echo "</tr>";
                 }
             } else {
@@ -74,14 +93,14 @@ $result = $conn->query($sql);
     </table>
 
     <script>
-    // Open Edit Task Popup and populate with data
-    function openEditPopup(taskId, taskTitle, taskDescription, dueDate) {
-        document.getElementById("editTaskId").value = taskId;
-        document.getElementById("editTaskTitle").value = taskTitle;
-        document.getElementById("editTaskDescription").value = taskDescription;
-        document.getElementById("editDueDate").value = dueDate;
-        document.getElementById("editTaskForm").style.display = "block";
-    }
+  // Open Edit Task Popup and populate with data
+  function openEditPopup(taskId, taskTitle, taskDescription, dueDate) {
+      document.getElementById("editTaskId").value = taskId;
+      document.getElementById("editTaskTitle").value = taskTitle;
+      document.getElementById("editTaskDescription").value = taskDescription;
+      document.getElementById("editDueDate").value = dueDate;
+      document.getElementById("editTaskForm").style.display = "block";
+  }
 
     // Delete Task function
     function deleteTask(taskId) {

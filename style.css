@@ -4,37 +4,41 @@ body {
 
 .add_button {
   box-sizing: border-box;
-  
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 12px;
-  gap: 8px;
-  
-  position: absolute;
-  width: 149px;
-  height: 41px;
-  left: 1058px;
-  top: 102px;
+  width: 20px;  /* Set a fixed width */
+  height: 20px; /* Set a fixed height to match width for a square */
+  padding: 0;   /* Remove padding to maintain square shape */
+  margin-left: 10px;
   
   background: #b6ff00;
-  border: 3px solid #2C2C2C;
-  }
+  border: 1px solid #2C2C2C;
+  float: right; /* Float the button to the right */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  font-size: 16px; /* Adjust font size if needed */
+}
+
+
   
-table {
+table {   
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  border-collapse: collapse;
+
   margin-top: 20px;
-  border-radius: 8px;
+  border-radius: 3px;
 }
 
 th, td {
-  border: 3px solid black;
+  border: 1px solid black;
   padding: 8px;
   text-align: left;
+}
+
+.add_th{
+  border:none;
+  background-color: #ffffff;
 }
 
 th {
@@ -49,7 +53,7 @@ th {
   top: 50%;
   transform: translate(-50%, -50%);
   
-  border: 3px solid black;
+  border: 1px solid black;
   padding: 20px;
   background-color: #b6ff00;
   border-radius: 10px;
@@ -80,21 +84,4 @@ th {
   overflow: auto;
   border-radius: 8px;
 }
-.idT{
-  width: 150px;
-}
-.TaskN{
-  width: 210px;
-}
-.TaskD{
-  width:600px
-}
-.TaskDt{
-  width: 100px;
-}
-.TaskS{
-  width: 100px;
-}
-.TaskA{
-  width: 100px
-}
+

@@ -32,7 +32,7 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <div class="navSidebar">
+    <div class="navSidebar" id="nav">
         <nav>
         <button id="closeNav" >&#8801</button>
         <form action="search.php" method="post">
@@ -43,7 +43,6 @@ $result = $conn->query($sql);
     </div>
     <button id="openNav" >&#8801</button> 
     <h1 align="center">TMS (Task Management System)</h1>
-  <button id="addTaskButton" class="add_button">Add Task</button>
 
   <!-- Task form -->
   <div id="taskForm" style="display:none;" class="popup">
@@ -75,17 +74,27 @@ $result = $conn->query($sql);
           <label for="editDueDate">Due Date:</label>
           <input type="date" id="editDueDate" name="dueDate" required><br>
 
-          <button type="submit" style="background: #b6ff00; border-radius: 5px;  border: 2px solid #2C2C2C">Update Task</button>
-          <button type="button" id="closeEditTaskForm" style="background: #b6ff00; border-radius: 5px;  border: 2px solid #2C2C2C">Back</button>
+          <button type="submit" style="background: #b6ff00; border-radius: 5px;  border: 1px solid #2C2C2C">Update Task</button>
+          <button type="button" id="closeEditTaskForm" style="background: #b6ff00; border-radius: 5px;  border: 1px solid #2C2C2C">Back</button>
       </form>
   </div>
   
 
   <!-- Task Table -->
   
-<div id="tableDIV">
+  <div id="tableContainer">
+    
+    
+    <!-- Task Table -->
+    <div id="tableDIV">
         <table border="1">
-              <thead>
+
+        <thead>
+                <tr>
+                    <th colspan="6" class="add_th"> <!-- This makes the header span all columns -->
+                        <button id="addTaskButton" class="add_button">+</button>
+                    </th>
+                </tr>
               <tr>
               <th class="idT">Task ID</th>
               <th class="TaskN">Task Name</th>
@@ -93,6 +102,7 @@ $result = $conn->query($sql);
               <th class="TaskDt">Due Date</th>
               <th class="TaskS">Status</th>
               <th class="TaskA">Actions</th>
+              
              </tr>
         </thead>
          <tbody>
@@ -112,9 +122,8 @@ $result = $conn->query($sql);
                 echo "<td>" . $row["Task_DueDate"] . "</td>";
                 echo "<td>" . $row["Task_Status"] . "</td>";
                 echo "<td>";
-                echo "<button onclick='openEditPopup(" . $row["Task_ID"] . ", `" . $row["Task_Title"] . "`, `" . $row["Task_Description"] . "`, `" . $row["Task_DueDate"] . "`) 'style='element.style { background: #b6ff00; border: 3px solid #2C2C2C; }; background: #b6ff00; border: 2px solid #2C2C2C;'> Edit</button>";
-                echo "<button onclick='deleteTask(" . $row["Task_ID"] . ")'style='element.style { background: #b6ff00; border: 3px solid #2C2C2C; }; background: #b6ff00; border: 2px solid #2C2C2C;'
->Delete</button>";
+                echo "<button onclick='openEditPopup(" . $row["Task_ID"] . ", `" . $row["Task_Title"] . "`, `" . $row["Task_Description"] . "`, `" . $row["Task_DueDate"] . "`) 'style='background: #b6ff00; border: 1px solid #2C2C2C;'> Edit</button>";
+                echo "<button onclick='deleteTask(" . $row["Task_ID"] . ")'style='background: #b6ff00; border: 1px solid #2C2C2C;'>Delete</button>";
                 echo "</td>";
                 echo "</tr>";
               }
@@ -125,6 +134,8 @@ $result = $conn->query($sql);
       </tbody>
     </table>
 </div>
+</div>
+
 
   <script>
   // Handle form visibility using JavaScript
