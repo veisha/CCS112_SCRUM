@@ -17,12 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $taskTitle = $_POST['taskTitle'];
     $taskDescription = $_POST['taskDescription'];
     $dueDate = $_POST['dueDate'];
+    $taskStatus = $_POST['taskStatus']; // Get the status from the form
 
     // Prepare the SQL query to update the task
-    $sql = "UPDATE tasks SET Task_Title = ?, Task_Description = ?, Task_DueDate = ? WHERE Task_ID = ?";
+    $sql = "UPDATE tasks SET Task_Title = ?, Task_Description = ?, Task_DueDate = ?, Task_Status = ? WHERE Task_ID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssi", $taskTitle, $taskDescription, $dueDate, $taskId);
+    
+    // Bind parameters (data types: s = string, i = integer)
+    $stmt->bind_param("ssssi", $taskTitle, $taskDescription, $dueDate, $taskStatus, $taskId);
 
+    // Execute the statement and check for errors
     if ($stmt->execute()) {
         // Redirect to the main page
         header("Location: index.php");

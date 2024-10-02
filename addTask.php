@@ -20,27 +20,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $taskTitle = $_POST['taskTitle'];
     $taskDescription = $_POST['taskDescription'];
     $dueDate = $_POST['dueDate'];
-    $taskStatus = "Ongoing";  // Default status for the task
+    $taskStatus = "ongoing";  // Default status for the task
 
-    // Prepare the SQL query to insert data into the tasks table
-    $sql = "INSERT INTO tasks (Task_Title, Task_Description, Task_DueDate, Task_Status) 
-            VALUES (?, ?, ?, ?)";
+    // First, check if the task title already exists
+    $checkSql = "SELECT * FROM tasks WHERE Task_Title = ?";
+    $checkStmt = $conn->prepare($checkSql);
+    $checkStmt->bind_param("s", $taskTitle);
+    $checkStmt->execute();
+    $result = $checkStmt->get_result();
 
-    // Prepare and bind parameters to avoid SQL injection
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $taskTitle, $taskDescription, $dueDate, $taskStatus);
-
-    // Execute the query
-    if ($stmt->execute()) {
-        // Redirect back to the main page if the insertion is successful
-        header("Location: index.php");
-        exit();
+    if ($result->num_rows > 0) {
+        // If the task title already exists, show a popup message
+        echo "<script>
+        alert('A task with this title already exists. Please choose a different title.');
+        window.location.href = 'index.php';
+        </script>";
     } else {
-        echo "Error: " . $stmt->error;
+        // If the title does not exist, insert the new task
+        $sql = "INSERT INTO tasks (Task_Title, Task_Description, Task_DueDate, Task_Status) 
+                VALUES (?, ?, ?, ?)";
+
+        // Prepare and bind parameters to avoid SQL injection
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $taskTitle, $taskDescription, $dueDate, $taskStatus);
+
+        // Execute the query
+        if ($stmt->execute()) {
+            // Redirect back to the main page if the insertion is successful
+            header("Location: index.php");
+            exit();
+        } else {
+            // Show a popup message for SQL error
+            echo "<script>alert('Error: " . $stmt->error . "');</script>";
+        }
+
+        // Close the statement
+        $stmt->close();
     }
 
-    // Close the statement and connection
-    $stmt->close();
+    // Close the check statement
+    $checkStmt->close();
 }
 
 $conn->close();
