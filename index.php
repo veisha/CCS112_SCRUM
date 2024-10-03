@@ -42,7 +42,7 @@ $result = $conn->query($sql);
     </nav>
     </div>
     <button id="openNav" >&#8801</button> 
-    <h1 align="center">TMS (Task Management System)</h1>
+    <h1 align="center">Task Management System</h1>
 
   <!-- Task form -->
   <div id="taskForm" style="display:none;" class="popup">
