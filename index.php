@@ -2,7 +2,7 @@
 // Connect to the MySQL database
 $servername = "localhost";
 $username = "root"; 
-$password = ""; 
+$password = "MySQL100"; 
 $dbname = "taskdb";
 
 // Create a connection to the database
@@ -42,7 +42,7 @@ $result = $conn->query($sql);
     </nav>
     </div>
     <button id="openNav" >&#8801</button> 
-    <h1 align="center">TMS (Task Management System)</h1>
+    <h1 align="center"></h1>
 
   <!-- Task form -->
   <div id="taskForm" style="display:none;" class="popup">
@@ -61,31 +61,24 @@ $result = $conn->query($sql);
       </form>
   </div>
 
-<!-- Edit Task Popup -->
-<div id="editTaskForm" style="display:none;" class="popup">
-    <form action="updateTask.php" method="post">
-        <input type="hidden" id="editTaskId" name="taskId" required maxlength="10">
-        
-        <label for="editTaskTitle">Task Title:</label>
-        <input type="text" id="editTaskTitle" name="taskTitle" required><br>
+  <!-- Edit Task Popup -->
+  <div id="editTaskForm" style="display:none; " class="popup">
+      <form action="updateTask.php" method="post">
+          <input type="hidden" id="editTaskId" name="taskId" required maxlength="10">
+          <label for="editTaskTitle">Task Title:</label>
+          <input type="text" id="editTaskTitle" name="taskTitle" required><br>
 
-        <label for="editTaskDescription">Task Description:</label>
-        <textarea id="editTaskDescription" name="taskDescription" required></textarea><br>
+          <label for="editTaskDescription">Task Description:</label>
+          <textarea id="editTaskDescription" name="taskDescription" required></textarea><br>
 
-        <label for="editDueDate">Due Date:</label>
-        <input type="date" id="editDueDate" name="dueDate" required><br>
+          <label for="editDueDate">Due Date:</label>
+          <input type="date" id="editDueDate" name="dueDate" required><br>
 
-        <label for="editTaskStatus">Task Status:</label>
-        <select id="editTaskStatus" name="taskStatus" required>
-            <option value="ongoing">Ongoing</option>
-            <option value="finished">Finished</option>
-        </select><br>
-
-        <button type="submit" style="background: #b6ff00; border-radius: 5px; border: 1px solid #2C2C2C">Update Task</button>
-        <button type="button" id="closeEditTaskForm" style="background: #b6ff00; border-radius: 5px; border: 1px solid #2C2C2C">Back</button>
-    </form>
-</div>
-
+          <button type="submit" style="background: #b6ff00; border-radius: 5px;  border: 1px solid #2C2C2C">Update Task</button>
+          <button type="button" id="closeEditTaskForm" style="background: #b6ff00; border-radius: 5px;  border: 1px solid #2C2C2C">Back</button>
+      </form>
+  </div>
+  
 
   <!-- Task Table -->
   
